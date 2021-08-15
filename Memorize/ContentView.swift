@@ -7,25 +7,42 @@
 
 import SwiftUI
 
-var faceEmojis = ["🥰", "😄", "😜", "🥳", "🤓", "😎", "😋", "🤩"]
-var cars = ["🚗", "🚕", "🚙", "🚛", "🏎", "🚓", "🚒", "🚑"]
-var food = ["🍕", "🍔", "🌭", "🥪", "🥞", "🌮", "🍣", "🍝"]
+
 
 struct ContentView: View {
-    @State var selectedEmojis = faceEmojis
     var columns: [GridItem]  = [GridItem(.adaptive(minimum: 90, maximum: 400))]
-    
+    @ObservedObject var ViewModel: GameViewModel
+
     var body: some View {
         VStack {
-            Section {
-                Text("Memorize")
+            HStack {
+                Spacer()
+                Button(action: {
+                    ViewModel.createNewGame()
+                }, label: {
+                    
+                    VStack {
+                        Image(systemName: "plus")
+                        Text("New game")
+                            .font(/*@START_MENU_TOKEN@*/.caption/*@END_MENU_TOKEN@*/)
+                    }
+                })
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .padding(.trailing)
             }
-            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            Section {
+            
+                Text("Memorize")
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+               
+            }
+          
             ScrollView {
                 LazyVGrid(columns: columns ) {
-                    ForEach(selectedEmojis, id: \.self)  { emoji in
-                        Card(content: "\(emoji)").aspectRatio(2/3, contentMode: .fit)
+                    ForEach(ViewModel.cards)  { emoji in
+                        Card(content: "\(emoji.content)").aspectRatio(2/3, contentMode: .fit)
                     }
                 }.font(.largeTitle)
             }
@@ -39,49 +56,49 @@ struct ContentView: View {
             Spacer()
             HStack {
                 Spacer()
-                carsButton
-                Spacer()
-                gesturesButton
-                Spacer()
-                foodButton
-                Spacer()
+//                carsButton
+//                Spacer()
+//                gesturesButton
+//                Spacer()
+//                foodButton
+//                Spacer()
             }
             .padding()
         }
     }
     
-    var carsButton: some View {
-        Button(action: {
-            selectedEmojis = cars.shuffled()
-        }, label: {
-                VStack {
-                    Image(systemName: "car")
-                    Text("Cars")
-                }
-            })
-    }
-    
-    var gesturesButton: some View {
-        Button(action: {
-            selectedEmojis = faceEmojis.shuffled()
-        }, label: {
-                VStack {
-                    Image(systemName: "face.smiling")
-                    Text("Gestures")
-                }
-            })
-    }
-    
-    var foodButton: some View {
-        Button(action: {
-            selectedEmojis = food.shuffled()
-        }, label: {
-                VStack {
-                    Image(systemName: "leaf")
-                    Text("Food")
-                }
-            })
-    }
+//    var carsButton: some View {
+//        Button(action: {
+//            selectedEmojis = cars.shuffled()
+//        }, label: {
+//                VStack {
+//                    Image(systemName: "car")
+//                    Text("Cars")
+//                }
+//            })
+//    }
+//
+//    var gesturesButton: some View {
+//        Button(action: {
+//            selectedEmojis = faceEmojis.shuffled()
+//        }, label: {
+//                VStack {
+//                    Image(systemName: "face.smiling")
+//                    Text("Gestures")
+//                }
+//            })
+//    }
+//
+//    var foodButton: some View {
+//        Button(action: {
+//            selectedEmojis = food.shuffled()
+//        }, label: {
+//                VStack {
+//                    Image(systemName: "leaf")
+//                    Text("Food")
+//                }
+//            })
+//    }
 }
 
 
@@ -111,7 +128,9 @@ struct Card: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ContentView()
+        let game = GameViewModel()
+        ContentView(ViewModel: game)
     }
 }

@@ -13,6 +13,9 @@
 		4C8C249B26BF381A0014F7B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8C249A26BF381A0014F7B5 /* Preview Assets.xcassets */; };
 		4C8C24A626BF381B0014F7B5 /* MemorizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C24A526BF381B0014F7B5 /* MemorizeTests.swift */; };
 		4C8C24B126BF381B0014F7B5 /* MemorizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C24B026BF381B0014F7B5 /* MemorizeUITests.swift */; };
+		4C8C24FD26C49C680014F7B5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C24FC26C49C680014F7B5 /* Game.swift */; };
+		4C8C24FF26C49D710014F7B5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C24FE26C49D710014F7B5 /* Theme.swift */; };
+		4C8C250226C4B9B10014F7B5 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C250126C4B9B10014F7B5 /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		4C8C24AC26BF381B0014F7B5 /* MemorizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8C24B026BF381B0014F7B5 /* MemorizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeUITests.swift; sourceTree = "<group>"; };
 		4C8C24B226BF381B0014F7B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C8C24FC26C49C680014F7B5 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		4C8C24FE26C49D710014F7B5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		4C8C250126C4B9B10014F7B5 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,8 @@
 		4C8C249226BF38180014F7B5 /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				4C8C250026C4B7860014F7B5 /* VIewModel */,
+				4C8C24F926C49B1C0014F7B5 /* Model */,
 				4C8C249326BF38180014F7B5 /* MemorizeApp.swift */,
 				4C8C249526BF38180014F7B5 /* ContentView.swift */,
 				4C8C249726BF381A0014F7B5 /* Assets.xcassets */,
@@ -128,6 +136,23 @@
 				4C8C24B226BF381B0014F7B5 /* Info.plist */,
 			);
 			path = MemorizeUITests;
+			sourceTree = "<group>";
+		};
+		4C8C24F926C49B1C0014F7B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C8C24FC26C49C680014F7B5 /* Game.swift */,
+				4C8C24FE26C49D710014F7B5 /* Theme.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4C8C250026C4B7860014F7B5 /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C8C250126C4B9B10014F7B5 /* GameViewModel.swift */,
+			);
+			path = VIewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +285,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8C249626BF38180014F7B5 /* ContentView.swift in Sources */,
+				4C8C24FF26C49D710014F7B5 /* Theme.swift in Sources */,
+				4C8C24FD26C49C680014F7B5 /* Game.swift in Sources */,
+				4C8C250226C4B9B10014F7B5 /* GameViewModel.swift in Sources */,
 				4C8C249426BF38180014F7B5 /* MemorizeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
