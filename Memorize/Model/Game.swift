@@ -9,78 +9,89 @@ import Foundation
 
 struct Game {
     
-    var themes: [Theme]
-    var cards: [Any]
+    private(set) var cards: [Card]
     var score = 0
     var isGameOver = false
-    var choosenTheme: Theme
-    
-    init(themes: [Theme]) {
-        self.themes = themes
-        self.choosenTheme = self.themes.randomElement()!
+    var theme: Theme
+    var choosenCardIndex: Int?
+
+    init(theme: Theme) {
         cards = []
-        startNewTheme()
+        self.theme = theme
+        startTheme()
     }
-    
-    mutating func startNewTheme() {
-        print(choosenTheme)
-        choosenTheme = getNewTheme()
-        print(choosenTheme)
+
+    mutating func startTheme() {
         cards = []
         var contentItems: [String] = []
-        while contentItems.count != choosenTheme.numberOfPairs {
-            let randomElement = choosenTheme.emojis.randomElement()!
+        while contentItems.count != theme.numberOfPairs {
+            let randomElement = theme.emojis.randomElement()!
             if !contentItems.contains(randomElement) {
                 contentItems.append(randomElement)
             }
         }
         let secondContentItems: [String] = contentItems.shuffled()
-        for index in 0..<choosenTheme.numberOfPairs {
+        for index in 0..<theme.numberOfPairs {
             cards.append(Card(id: index*2, content: contentItems[index]))
             cards.append(Card(id: index*2+1, content: secondContentItems[index]))
         }
     }
-    
-    func getNewTheme() -> Theme {
-        let themesIndexes: [Int] = Array(0..<themes.count)
-        var visitedIndexes: [Int] = []
-        
-        while(visitedIndexes.count < themesIndexes.count) {
-            let randomIndex = Int.random(in: 0..<themes.count)
-            let newTheme = themes[randomIndex]
-            if newTheme == choosenTheme {
-                visitedIndexes.append(randomIndex)
+
+    mutating func chooseCard(_ card: Card) {
+        print(card)
+        if let foundIndex = cards.firstIndex(where: {$0.id == card.id}),
+           !cards[foundIndex].isFaceUp,
+           !cards[foundIndex].isMatchedUp
+        {
+            if let potentialMatchIndex = choosenCardIndex {
+                if cards[foundIndex].content == cards[potentialMatchIndex].content {
+                    cards[foundIndex].isMatchedUp = true
+                    cards[potentialMatchIndex].isMatchedUp = true
+                }
+                choosenCardIndex = nil
             } else {
-                return newTheme
+                for index in cards.indices {
+                    cards[index].isFaceUp = false
+                }
+                choosenCardIndex = foundIndex
             }
+            cards[foundIndex].isFaceUp.toggle()
         }
-        return themes[0]
+        print(card)
     }
    
     mutating func endGame() {
         isGameOver = true
     }
-    
+
     mutating func penalizePoints() {
         score -= 1
     }
-    
+
     mutating func awardPoints () {
         score += 2
     }
-    
-    
-    
-    struct Card: Identifiable, Equatable {
-        static func == (lhs: Game.Card, rhs: Game.Card) -> Bool {
-            return lhs.content == rhs.content
+
+
+
+    class Card: Identifiable, Equatable, ObservableObject {
+        internal init(id: Int, isFaceUp: Bool = false, content: String, isMatchedUp: Bool = false, isPreviouslySeen: Bool = false) {
+            self.id = id
+            self.isFaceUp = isFaceUp
+            self.content = content
+            self.isMatchedUp = isMatchedUp
+            self.isPreviouslySeen = isPreviouslySeen
         }
         
-        var id: Int
-        var isFaceUP: Bool = false
-        var content: String
-        var isMatchedUP: Bool = false
-        var isPreviouslySeen = false
+            static func == (lhs: Game.Card, rhs: Game.Card) -> Bool {
+                return lhs.content == rhs.content
+            }
+            
+            var id: Int
+            @Published var isFaceUp: Bool = false
+            var content: String
+            var isMatchedUp: Bool = false
+            var isPreviouslySeen = false
+        }
+
     }
-    
-}

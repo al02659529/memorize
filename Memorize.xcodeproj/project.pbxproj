@@ -16,6 +16,7 @@
 		4C8C24FD26C49C680014F7B5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C24FC26C49C680014F7B5 /* Game.swift */; };
 		4C8C24FF26C49D710014F7B5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C24FE26C49D710014F7B5 /* Theme.swift */; };
 		4C8C250226C4B9B10014F7B5 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C250126C4B9B10014F7B5 /* GameViewModel.swift */; };
+		4C8C250426C9BDBA0014F7B5 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8C250326C9BDBA0014F7B5 /* Themes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4C8C24FC26C49C680014F7B5 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		4C8C24FE26C49D710014F7B5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		4C8C250126C4B9B10014F7B5 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		4C8C250326C9BDBA0014F7B5 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				4C8C24FC26C49C680014F7B5 /* Game.swift */,
 				4C8C24FE26C49D710014F7B5 /* Theme.swift */,
+				4C8C250326C9BDBA0014F7B5 /* Themes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C8C249626BF38180014F7B5 /* ContentView.swift in Sources */,
+				4C8C250426C9BDBA0014F7B5 /* Themes.swift in Sources */,
 				4C8C24FF26C49D710014F7B5 /* Theme.swift in Sources */,
 				4C8C24FD26C49C680014F7B5 /* Game.swift in Sources */,
 				4C8C250226C4B9B10014F7B5 /* GameViewModel.swift in Sources */,

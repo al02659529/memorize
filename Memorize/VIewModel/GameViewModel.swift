@@ -10,7 +10,7 @@ import SwiftUI
 
 class GameViewModel: ObservableObject {
     
-    static let numbersTheme = Theme(name: "WeirdNumbers", emojis: ["1", "2", "4", "9", "20", "30"], numberOfPairs: 6, cardsColor: .darkGray)
+    static let numbersTheme = Theme(name: "WeirdNumbers", emojis: ["1", "2", "4", "9", "20", "30"], numberOfPairs: 6, cardsColor: .pink)
     
     static let emojisTheme = Theme(name: "Faces", emojis: ["🥰", "😄", "😜", "🥳", "🤓", "😎", "😋", "🤩"], numberOfPairs: 8, cardsColor: .blue)
     
@@ -19,19 +19,33 @@ class GameViewModel: ObservableObject {
     static let activitiesTheme = Theme(name: "Activities", emojis: ["🤺", "🏌️", "🏄‍♂️", "🚣", "🏊‍♂️", "🏋️", "🚴‍♂️"], numberOfPairs: -10, cardsColor: .green)
     
     static let fruitsTheme = Theme(name: "Fruits", emojis: ["🍇", "🍉", "🍈", "🍊", "🍋", "🍎", "🍏", "🥭"], numberOfPairs: 5, cardsColor: .purple)
-    static let themes = [numbersTheme, emojisTheme, carsTheme, activitiesTheme, fruitsTheme]
+    
+    static var themes = Themes([numbersTheme, emojisTheme, carsTheme, fruitsTheme])
+    
     static func createMemoryGame() -> Game {
-        
-        Game(themes: [numbersTheme, emojisTheme, carsTheme, activitiesTheme, fruitsTheme])
+        Game(theme: themes.currentTheme!)
     }
     
-    @Published var gameController: Game = createMemoryGame()
+    @Published private var gameController: Game = Game(theme: themes.currentTheme!)
     
     func createNewGame() {
-        gameController.startNewTheme()
-    }
-    var cards: [Game.Card] {
-        return gameController.cards as! [Game.Card]
+        gameController.theme = GameViewModel.themes.changeCurrentTheme()
+        gameController.startTheme()
     }
     
+    func choose(_ card: Game.Card) {
+        gameController.chooseCard(card)
+    }
+    
+    var cards: [Game.Card] {
+        gameController.cards
+    }
+    
+    var title: String {
+        return gameController.theme.name
+    }
+    
+    var color: Color {
+        return gameController.theme.cardsColor
+    }
 }

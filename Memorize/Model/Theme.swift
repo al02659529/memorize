@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
 struct Theme: Equatable {
     
@@ -15,7 +15,7 @@ struct Theme: Equatable {
     }
     
     
-    internal init(name: String, emojis: [String], numberOfPairs: Int, cardsColor: UIColor) {
+    internal init(name: String, emojis: [String], numberOfPairs: Int, cardsColor: Color) {
         self.name = name
         self.emojis = Array(Set(emojis))
         
@@ -30,8 +30,5 @@ struct Theme: Equatable {
     var name: String
     var emojis: [String]
     var numberOfPairs: Int
-    var cardsColor: UIColor
-    
-    
-    
+    var cardsColor: Color
 }
