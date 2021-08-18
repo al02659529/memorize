@@ -74,21 +74,13 @@ struct Game {
 
 
 
-    class Card: Identifiable, Equatable, ObservableObject {
-        internal init(id: Int, isFaceUp: Bool = false, content: String, isMatchedUp: Bool = false, isPreviouslySeen: Bool = false) {
-            self.id = id
-            self.isFaceUp = isFaceUp
-            self.content = content
-            self.isMatchedUp = isMatchedUp
-            self.isPreviouslySeen = isPreviouslySeen
-        }
+    struct Card: Identifiable {
         
-            static func == (lhs: Game.Card, rhs: Game.Card) -> Bool {
-                return lhs.content == rhs.content
-            }
+        
+            
             
             var id: Int
-            @Published var isFaceUp: Bool = false
+            var isFaceUp: Bool = false
             var content: String
             var isMatchedUp: Bool = false
             var isPreviouslySeen = false

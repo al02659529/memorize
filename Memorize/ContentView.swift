@@ -76,7 +76,7 @@ struct ContentView: View {
 
 
 struct Card: View {
-    @ObservedObject var card: Game.Card
+    var card: Game.Card
     let color: Color
     
     var body: some View {
@@ -88,6 +88,8 @@ struct Card: View {
                         .strokeBorder()
                         .accentColor(color)
                         .foregroundColor(color)
+                } else if card.isMatchedUp {
+                    shape.opacity(0)
                 }
                 else {
                     shape
