@@ -22,7 +22,7 @@ Memorize is a SwiftUI-based, mobile-ready, matching card game.
 
 ## Tech
 
-Memoirze uses a number of open source projects to work properly:
+Memorize uses a number of open source projects to work properly:
 
 - In progress
 
