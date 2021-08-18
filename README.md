@@ -18,7 +18,7 @@ Memorize is a SwiftUI-based, mobile-ready, matching card game.
 - Use play mode to play memorize with scores
 
 
-M
+
 
 ## Tech
 
