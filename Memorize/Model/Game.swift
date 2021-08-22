@@ -10,10 +10,10 @@ import Foundation
 struct Game {
     
     private(set) var cards: [Card]
-    var score = 0
+    var score: Int8 = 0
     var isGameOver = false
     var theme: Theme
-    var choosenCardIndex: Int?
+    var currentFaceUpCardIndex: Int?
 
     init(theme: Theme) {
         cards = []
@@ -43,17 +43,22 @@ struct Game {
            !cards[foundIndex].isFaceUp,
            !cards[foundIndex].isMatchedUp
         {
-            if let potentialMatchIndex = choosenCardIndex {
+            if let potentialMatchIndex = currentFaceUpCardIndex {
                 if cards[foundIndex].content == cards[potentialMatchIndex].content {
                     cards[foundIndex].isMatchedUp = true
                     cards[potentialMatchIndex].isMatchedUp = true
+                    awardPoints()
+                } else {
+                    penalizePoints()
                 }
-                choosenCardIndex = nil
+                currentFaceUpCardIndex = nil
+                
             } else {
                 for index in cards.indices {
                     cards[index].isFaceUp = false
                 }
-                choosenCardIndex = foundIndex
+                
+                currentFaceUpCardIndex = foundIndex
             }
             cards[foundIndex].isFaceUp.toggle()
         }
@@ -75,10 +80,6 @@ struct Game {
 
 
     struct Card: Identifiable {
-        
-        
-            
-            
             var id: Int
             var isFaceUp: Bool = false
             var content: String

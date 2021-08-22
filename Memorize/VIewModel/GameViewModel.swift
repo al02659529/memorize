@@ -48,4 +48,8 @@ class GameViewModel: ObservableObject {
     var color: Color {
         return gameController.theme.cardsColor
     }
+    
+    var score: Int8 {
+        return gameController.score
+    }
 }

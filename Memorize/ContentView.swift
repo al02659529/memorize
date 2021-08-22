@@ -61,7 +61,7 @@ struct ContentView: View {
             Spacer()
             HStack {
                 Spacer()
-                Text("0")
+                Text(String(ViewModel.score))
                     .font(.title2)
                     .bold()
                     
